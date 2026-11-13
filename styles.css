@@ -982,113 +982,71 @@ li[data-baseweb="menu-item"]:hover {
 }
 
 /* --------------------------------------------------------------------------
-   12. UNIFIED FILTER DROPDOWNS
-   Select Genres (multiselect) + Runtime Bracket, US Certification and
-   Original Language (selectbox) share ONE closed-bar look and ONE opened-menu
-   look. Kept at the end of the file so it wins over earlier rules.
+   12. FILTER LABEL + DROPDOWN MENU FIXES
    -------------------------------------------------------------------------- */
 
-/* --- Closed bar: white surface, black text, light-grey border ------------- */
-[data-testid="stSelectbox"] [data-baseweb="select"],
-[data-testid="stSelectbox"] [data-baseweb="select"] > div,
-[data-testid="stSelectbox"] [data-baseweb="select"] > div > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"],
-[data-testid="stMultiSelect"] [data-baseweb="select"] > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"] > div > div {
-    background-color: #FFFFFF !important;
-    background: #FFFFFF !important;
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-}
-
-/* Border only on the outer control so nested divs don't double-border */
-[data-testid="stSelectbox"] [data-baseweb="select"] > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"] > div {
-    border: 1.5px solid #D0D0D0 !important;
-    border-radius: 4px !important;
-}
-[data-testid="stSelectbox"] [data-baseweb="select"] > div > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"] > div > div {
-    border: none !important;
-}
-
-/* Selected value / typed text / placeholder */
-[data-testid="stSelectbox"] [data-baseweb="select"] span,
-[data-testid="stSelectbox"] [data-baseweb="select"] input,
-[data-testid="stMultiSelect"] [data-baseweb="select"] input {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-}
-[data-testid="stSelectbox"] [data-baseweb="select"] input::placeholder,
-[data-testid="stMultiSelect"] [data-baseweb="select"] input::placeholder {
-    color: #555555 !important;
-    -webkit-text-fill-color: #555555 !important;
-    opacity: 1 !important;
-}
-
-/* Arrow / clear icons */
-[data-testid="stSelectbox"] [data-baseweb="select"] svg,
-[data-testid="stMultiSelect"] [data-baseweb="select"] svg {
-    fill: #222222 !important;
-    color: #222222 !important;
-}
-
-/* Hover + focus: same red accent on all four */
-[data-testid="stSelectbox"] [data-baseweb="select"]:hover > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"]:hover > div {
-    border-color: #E50914 !important;
-}
-[data-testid="stSelectbox"] [data-baseweb="select"]:focus-within > div,
-[data-testid="stMultiSelect"] [data-baseweb="select"]:focus-within > div {
-    border-color: #E50914 !important;
-    box-shadow: 0 0 0 1px #E50914 !important;
-}
-
-/* Genre chips stay red pills with white text (inside the white bar) */
-[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
-    background-color: #E50914 !important;
-}
-[data-testid="stMultiSelect"] span[data-baseweb="tag"] span,
-[data-testid="stMultiSelect"] span[data-baseweb="tag"] div {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
+/* 12a. Labels of Runtime Bracket / US Certification / Original Language.
+   Earlier rules force EVERY <p>/<div> inside a selectbox to black (meant for
+   the closed bar), which also turned these labels black on the dark page.
+   Make them the same light grey as the "Select Genres" label. */
+[data-testid="stSelectbox"] [data-testid="stWidgetLabel"],
+[data-testid="stSelectbox"] [data-testid="stWidgetLabel"] *,
+[data-testid="stSelectbox"] label,
+[data-testid="stSelectbox"] label * {
+    color: #B3B3B3 !important;
+    -webkit-text-fill-color: #B3B3B3 !important;
     background: transparent !important;
-}
-[data-testid="stMultiSelect"] span[data-baseweb="tag"] svg {
-    fill: #FFFFFF !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
 }
 
-/* --- Opened menu: dark charcoal, white text, red hover bar --------------- */
-/* Same rules for every dropdown, including the Select Genres list. */
-div[data-baseweb="popover"] ul[role="listbox"],
-div[data-baseweb="popover"] [data-baseweb="menu"],
-div[data-baseweb="popover"] div[data-testid="stSelectboxVirtualDropdown"] {
+/* 12b. Opened dropdown menu: ONE dark theme for every dropdown, including
+   Select Genres. Every element inside the popover gets the charcoal
+   background so the menu looks identical whatever its internal structure. */
+html body div[data-baseweb="popover"],
+html body div[data-baseweb="popover"] * {
     background-color: #1a1a1a !important;
     background: #1a1a1a !important;
-    border: 1px solid #333333 !important;
-    border-radius: 6px !important;
-}
-
-div[data-baseweb="popover"] li[role="option"],
-div[data-baseweb="popover"] li[role="option"] *,
-div[data-baseweb="popover"] [data-baseweb="menu"] li,
-div[data-baseweb="popover"] [data-baseweb="menu"] li * {
-    background-color: transparent !important;
-    background: transparent !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
+    border-color: #333333 !important;
 }
 
-div[data-baseweb="popover"] li[role="option"] {
+html body div[data-baseweb="popover"] {
+    border: 1px solid #333333 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Option rows: transparent children so the row's own hover color shows */
+html body div[data-baseweb="popover"] li[role="option"],
+html body div[data-baseweb="popover"] [role="option"] {
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
     border-left: 3px solid transparent !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+}
+html body div[data-baseweb="popover"] li[role="option"] *,
+html body div[data-baseweb="popover"] [role="option"] * {
+    background-color: transparent !important;
+    background: transparent !important;
 }
 
-div[data-baseweb="popover"] li[role="option"]:hover,
-div[data-baseweb="popover"] li[role="option"][aria-selected="true"],
-div[data-baseweb="popover"] li[role="option"][data-highlighted="true"] {
+/* Hover / highlighted / selected: dark grey row with red left bar */
+html body div[data-baseweb="popover"] li[role="option"]:hover,
+html body div[data-baseweb="popover"] [role="option"]:hover,
+html body div[data-baseweb="popover"] li[role="option"][aria-selected="true"],
+html body div[data-baseweb="popover"] [role="option"][aria-selected="true"],
+html body div[data-baseweb="popover"] li[role="option"][data-highlighted="true"] {
     background-color: #2b2b2b !important;
     background: #2b2b2b !important;
     border-left: 3px solid #E50914 !important;
+}
+
+/* Scrollbar inside open menus */
+html body div[data-baseweb="popover"] ::-webkit-scrollbar-thumb {
+    background: #555555 !important;
+    border-radius: 4px !important;
+}
+html body div[data-baseweb="popover"] ::-webkit-scrollbar-track {
+    background: #1a1a1a !important;
 }
