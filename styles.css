@@ -520,16 +520,95 @@ button[kind="secondary"]:hover,
     outline: none !important;
 }
 
-/* Select Box */
-[data-testid="stSelectbox"] > div > div {
-    background-color: #232323 !important;
-    color: #FFFFFF !important;
-    border: 1px solid #383838 !important;
+/* Select Box & Dropdown Bars - Black Text Styling */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stMultiSelect"] > div > div,
+div[data-baseweb="select"],
+div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #D0D0D0 !important;
     border-radius: 4px !important;
 }
 
-[data-testid="stSelectbox"] svg {
-    fill: #B3B3B3 !important;
+/* Ensure all text inside the dropdown bar displays in BLACK */
+[data-testid="stSelectbox"] span,
+[data-testid="stSelectbox"] div,
+[data-testid="stSelectbox"] p,
+[data-testid="stSelectbox"] input,
+[data-testid="stMultiSelect"] input,
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] div,
+div[data-baseweb="select"] p,
+div[data-baseweb="select"] input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Dropdown arrow icon */
+[data-testid="stSelectbox"] svg,
+[data-testid="stMultiSelect"] svg,
+div[data-baseweb="select"] svg {
+    fill: #222222 !important;
+}
+
+/* Focus state with subtle red highlight */
+div[data-baseweb="select"]:focus-within {
+    border-color: #E50914 !important;
+    box-shadow: 0 0 0 1px #E50914 !important;
+}
+
+/* Multi-select chips/tags inside the dropdown bar */
+span[data-baseweb="tag"] {
+    background-color: #E50914 !important;
+    border-radius: 4px !important;
+}
+
+span[data-baseweb="tag"] span,
+span[data-baseweb="tag"] div {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+span[data-baseweb="tag"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* Dropdown Menu Popover (when opened) */
+div[data-baseweb="popover"],
+div[data-baseweb="popover"] > div,
+ul[data-baseweb="menu"],
+ul[role="listbox"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid #D0D0D0 !important;
+    border-radius: 4px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Individual options in the opened dropdown */
+li[role="option"],
+li[role="option"] span,
+li[role="option"] div,
+li[role="option"] p,
+li[data-baseweb="menu-item"],
+li[data-baseweb="menu-item"] span,
+ul[role="listbox"] li {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background-color: #FFFFFF !important;
+    font-size: 0.92rem !important;
+}
+
+/* Option Hover & Active state */
+li[role="option"]:hover,
+li[role="option"]:hover span,
+li[role="option"]:hover div,
+li[role="option"][aria-selected="true"],
+li[role="option"][aria-selected="true"] span,
+li[data-baseweb="menu-item"]:hover {
+    background-color: #F2F2F2 !important;
+    color: #E50914 !important;
+    -webkit-text-fill-color: #E50914 !important;
 }
 
 /* Sliders */
