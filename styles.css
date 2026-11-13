@@ -524,44 +524,61 @@ button[kind="secondary"]:hover,
    DROPDOWN BARS & MENUS (PERFECT HIGH-CONTRAST NETFLIX STYLING)
    -------------------------------------------------------------------------- */
 
-/* 1. Closed Dropdown Bar: Clean White Background with Solid Black Text */
+/* =====================================================================
+   CLOSED BAR STYLING
+   - ALL dropdowns (selectbox + multiselect): white bg, black text
+   ===================================================================== */
+
+/* Closed bar container */
 [data-testid="stSelectbox"] > div > div,
 [data-testid="stMultiSelect"] > div > div,
 div[data-baseweb="select"],
-div[data-baseweb="select"] > div {
+div[data-baseweb="select"] > div,
+[data-testid="stSelectbox"] [data-baseweb="select"],
+[data-testid="stSelectbox"] [data-baseweb="select"] > div {
     background-color: #FFFFFF !important;
-    border: 1px solid #D0D0D0 !important;
+    background: #FFFFFF !important;
+    border: 1.5px solid #D0D0D0 !important;
     border-radius: 4px !important;
 }
 
-/* Ensure all text/input inside the closed dropdown bar is solid black */
+/* Closed bar text: ALL selectboxes and multiselect = solid black */
 [data-testid="stSelectbox"] span,
 [data-testid="stSelectbox"] div,
 [data-testid="stSelectbox"] p,
 [data-testid="stSelectbox"] input,
+[data-testid="stSelectbox"] [data-baseweb="select"] *,
 [data-testid="stMultiSelect"] input,
 div[data-baseweb="select"] span,
-div[data-baseweb="select"] div,
 div[data-baseweb="select"] p,
 div[data-baseweb="select"] input {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
 }
 
-/* Dropdown arrow icon in the closed bar */
+/* Select Genres (multiselect) closed bar text explicitly black */
+[data-testid="stMultiSelect"] [data-baseweb="select"] span,
+[data-testid="stMultiSelect"] [data-baseweb="select"] div,
+[data-testid="stMultiSelect"] [data-baseweb="select"] p,
+[data-testid="stMultiSelect"] [data-baseweb="select"] input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Dropdown arrow icons: dark */
 [data-testid="stSelectbox"] svg,
 [data-testid="stMultiSelect"] svg,
 div[data-baseweb="select"] svg {
     fill: #222222 !important;
 }
 
-/* Focus state with subtle red highlight */
+/* Focus ring */
 div[data-baseweb="select"]:focus-within {
     border-color: #E50914 !important;
     box-shadow: 0 0 0 1px #E50914 !important;
 }
 
-/* Multi-select chips/tags inside the bar: Red pill with white text */
+/* Multi-select chips/tags: Red pill with white text */
 span[data-baseweb="tag"] {
     background-color: #E50914 !important;
     border-radius: 4px !important;
@@ -577,17 +594,22 @@ span[data-baseweb="tag"] svg {
     fill: #FFFFFF !important;
 }
 
-/* 2. Opened Dropdown Popover Menu: Dark Charcoal Background (#1a1a1a) with Crisp White Text (#FFFFFF) */
+/* =====================================================================
+   OPENED DROPDOWN POPOVER — Dark charcoal bg + white text
+   Applies to ALL dropdowns (selectbox AND multiselect)
+   ===================================================================== */
+
+/* Popover / menu container */
 div[data-baseweb="popover"],
 div[data-baseweb="popover"] > div,
+div[data-baseweb="popover"] > div > div,
+div[data-baseweb="popover"] > div > div > div,
 div[data-baseweb="popover"] ul,
 div[data-baseweb="menu"],
 ul[data-baseweb="menu"],
 ul[role="listbox"],
 div[data-testid="stSelectboxVirtualDropdown"],
-[data-baseweb="popover"] [data-baseweb="menu"],
-[data-testid="stMultiSelect"] [data-baseweb="popover"],
-[data-testid="stSelectbox"] [data-baseweb="popover"] {
+[data-baseweb="popover"] [data-baseweb="menu"] {
     background-color: #1a1a1a !important;
     background: #1a1a1a !important;
     border: 1px solid #333333 !important;
@@ -595,16 +617,7 @@ div[data-testid="stSelectboxVirtualDropdown"],
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85) !important;
 }
 
-/* Target the inner popover body/block that Streamlit Cloud renders */
-div[data-baseweb="popover"] > div > div,
-div[data-baseweb="popover"] > div > div > div,
-[class*="menuContainer"],
-[class*="Menu"] {
-    background-color: #1a1a1a !important;
-    background: #1a1a1a !important;
-}
-
-/* All Option Items in the Opened Dropdown: Crisp Pure White Text */
+/* ALL text inside any open popover/listbox: white */
 div[data-baseweb="popover"] li,
 div[data-baseweb="popover"] div[role="option"],
 div[data-baseweb="popover"] span,
@@ -624,10 +637,11 @@ ul[role="listbox"] * {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     background-color: transparent !important;
+    background: transparent !important;
     font-size: 0.92rem !important;
 }
 
-/* Option Hover & Selected State: Charcoal Highlight (#2b2b2b) with Red Accent */
+/* Hover & selected option items */
 div[data-baseweb="popover"] li:hover,
 div[data-baseweb="popover"] div[role="option"]:hover,
 div[data-baseweb="popover"] li[aria-selected="true"],
@@ -643,6 +657,24 @@ li[data-baseweb="menu-item"]:hover {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border-left: 3px solid #E50914 !important;
+}
+
+/* =====================================================================
+   CRITICAL: Override the global "div { color: #FFFFFF }" rule
+   that bleeds into the closed selectbox bar text on Streamlit Cloud.
+   These selectors must come AFTER the global rule (they do, since this
+   section is lower in the file).
+   ===================================================================== */
+[data-testid="stSelectbox"] [data-baseweb="select"] [data-testid="stMarkdownContainer"],
+[data-testid="stSelectbox"] > div > div > div,
+[data-testid="stSelectbox"] > div > div > div > div,
+[data-testid="stSelectbox"] > div > div > div > div > div,
+[data-testid="stMultiSelect"] > div > div > div,
+[data-testid="stMultiSelect"] > div > div > div > div {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
 }
 
 /* Sliders */
@@ -948,3 +980,4 @@ li[data-baseweb="menu-item"]:hover {
     margin-right: 6px;
     margin-bottom: 6px;
 }
+
