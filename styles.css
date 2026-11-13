@@ -520,18 +520,21 @@ button[kind="secondary"]:hover,
     outline: none !important;
 }
 
-/* Select Box & Dropdown Bars - Black Text Styling */
+/* --------------------------------------------------------------------------
+   DROPDOWN BARS & MENUS (PERFECT HIGH-CONTRAST NETFLIX STYLING)
+   -------------------------------------------------------------------------- */
+
+/* 1. Closed Dropdown Bar: Clean White Background with Solid Black Text */
 [data-testid="stSelectbox"] > div > div,
 [data-testid="stMultiSelect"] > div > div,
 div[data-baseweb="select"],
 div[data-baseweb="select"] > div {
     background-color: #FFFFFF !important;
-    color: #000000 !important;
     border: 1px solid #D0D0D0 !important;
     border-radius: 4px !important;
 }
 
-/* Ensure all text inside the dropdown bar displays in BLACK */
+/* Ensure all text/input inside the closed dropdown bar is solid black */
 [data-testid="stSelectbox"] span,
 [data-testid="stSelectbox"] div,
 [data-testid="stSelectbox"] p,
@@ -545,7 +548,7 @@ div[data-baseweb="select"] input {
     -webkit-text-fill-color: #000000 !important;
 }
 
-/* Dropdown arrow icon */
+/* Dropdown arrow icon in the closed bar */
 [data-testid="stSelectbox"] svg,
 [data-testid="stMultiSelect"] svg,
 div[data-baseweb="select"] svg {
@@ -558,7 +561,7 @@ div[data-baseweb="select"]:focus-within {
     box-shadow: 0 0 0 1px #E50914 !important;
 }
 
-/* Multi-select chips/tags inside the dropdown bar */
+/* Multi-select chips/tags inside the bar: Red pill with white text */
 span[data-baseweb="tag"] {
     background-color: #E50914 !important;
     border-radius: 4px !important;
@@ -574,41 +577,55 @@ span[data-baseweb="tag"] svg {
     fill: #FFFFFF !important;
 }
 
-/* Dropdown Menu Popover (when opened) */
+/* 2. Opened Dropdown Popover Menu: Dark Charcoal Background (#1a1a1a) with Crisp White Text (#FFFFFF) */
 div[data-baseweb="popover"],
 div[data-baseweb="popover"] > div,
+div[data-baseweb="popover"] ul,
+div[data-baseweb="menu"],
 ul[data-baseweb="menu"],
-ul[role="listbox"] {
-    background-color: #FFFFFF !important;
-    border: 1px solid #D0D0D0 !important;
-    border-radius: 4px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+ul[role="listbox"],
+div[data-testid="stSelectboxVirtualDropdown"] {
+    background-color: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85) !important;
 }
 
-/* Individual options in the opened dropdown */
+/* All Option Items in the Opened Dropdown: Crisp Pure White Text */
+div[data-baseweb="popover"] li,
+div[data-baseweb="popover"] div[role="option"],
+div[data-baseweb="popover"] span,
+div[data-baseweb="popover"] p,
+div[data-baseweb="popover"] div,
+ul[role="listbox"] li,
+ul[role="listbox"] div[role="option"],
 li[role="option"],
 li[role="option"] span,
 li[role="option"] div,
-li[role="option"] p,
 li[data-baseweb="menu-item"],
 li[data-baseweb="menu-item"] span,
-ul[role="listbox"] li {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    background-color: #FFFFFF !important;
+div[data-testid="stSelectboxVirtualDropdown"] * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
     font-size: 0.92rem !important;
 }
 
-/* Option Hover & Active state */
+/* Option Hover & Selected State: Charcoal Highlight (#2b2b2b) with Red Accent */
+div[data-baseweb="popover"] li:hover,
+div[data-baseweb="popover"] div[role="option"]:hover,
+div[data-baseweb="popover"] li[aria-selected="true"],
+div[data-baseweb="popover"] div[role="option"][aria-selected="true"],
 li[role="option"]:hover,
 li[role="option"]:hover span,
 li[role="option"]:hover div,
 li[role="option"][aria-selected="true"],
 li[role="option"][aria-selected="true"] span,
 li[data-baseweb="menu-item"]:hover {
-    background-color: #F2F2F2 !important;
-    color: #E50914 !important;
-    -webkit-text-fill-color: #E50914 !important;
+    background-color: #2b2b2b !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border-left: 3px solid #E50914 !important;
 }
 
 /* Sliders */
