@@ -981,3 +981,114 @@ li[data-baseweb="menu-item"]:hover {
     margin-bottom: 6px;
 }
 
+/* --------------------------------------------------------------------------
+   12. UNIFIED FILTER DROPDOWNS
+   Select Genres (multiselect) + Runtime Bracket, US Certification and
+   Original Language (selectbox) share ONE closed-bar look and ONE opened-menu
+   look. Kept at the end of the file so it wins over earlier rules.
+   -------------------------------------------------------------------------- */
+
+/* --- Closed bar: white surface, black text, light-grey border ------------- */
+[data-testid="stSelectbox"] [data-baseweb="select"],
+[data-testid="stSelectbox"] [data-baseweb="select"] > div,
+[data-testid="stSelectbox"] [data-baseweb="select"] > div > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"],
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div > div {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Border only on the outer control so nested divs don't double-border */
+[data-testid="stSelectbox"] [data-baseweb="select"] > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div {
+    border: 1.5px solid #D0D0D0 !important;
+    border-radius: 4px !important;
+}
+[data-testid="stSelectbox"] [data-baseweb="select"] > div > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div > div {
+    border: none !important;
+}
+
+/* Selected value / typed text / placeholder */
+[data-testid="stSelectbox"] [data-baseweb="select"] span,
+[data-testid="stSelectbox"] [data-baseweb="select"] input,
+[data-testid="stMultiSelect"] [data-baseweb="select"] input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+[data-testid="stSelectbox"] [data-baseweb="select"] input::placeholder,
+[data-testid="stMultiSelect"] [data-baseweb="select"] input::placeholder {
+    color: #555555 !important;
+    -webkit-text-fill-color: #555555 !important;
+    opacity: 1 !important;
+}
+
+/* Arrow / clear icons */
+[data-testid="stSelectbox"] [data-baseweb="select"] svg,
+[data-testid="stMultiSelect"] [data-baseweb="select"] svg {
+    fill: #222222 !important;
+    color: #222222 !important;
+}
+
+/* Hover + focus: same red accent on all four */
+[data-testid="stSelectbox"] [data-baseweb="select"]:hover > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"]:hover > div {
+    border-color: #E50914 !important;
+}
+[data-testid="stSelectbox"] [data-baseweb="select"]:focus-within > div,
+[data-testid="stMultiSelect"] [data-baseweb="select"]:focus-within > div {
+    border-color: #E50914 !important;
+    box-shadow: 0 0 0 1px #E50914 !important;
+}
+
+/* Genre chips stay red pills with white text (inside the white bar) */
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
+    background-color: #E50914 !important;
+}
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] span,
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] div {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: transparent !important;
+}
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* --- Opened menu: dark charcoal, white text, red hover bar --------------- */
+/* Same rules for every dropdown, including the Select Genres list. */
+div[data-baseweb="popover"] ul[role="listbox"],
+div[data-baseweb="popover"] [data-baseweb="menu"],
+div[data-baseweb="popover"] div[data-testid="stSelectboxVirtualDropdown"] {
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+    border-radius: 6px !important;
+}
+
+div[data-baseweb="popover"] li[role="option"],
+div[data-baseweb="popover"] li[role="option"] *,
+div[data-baseweb="popover"] [data-baseweb="menu"] li,
+div[data-baseweb="popover"] [data-baseweb="menu"] li * {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+div[data-baseweb="popover"] li[role="option"] {
+    border-left: 3px solid transparent !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+div[data-baseweb="popover"] li[role="option"]:hover,
+div[data-baseweb="popover"] li[role="option"][aria-selected="true"],
+div[data-baseweb="popover"] li[role="option"][data-highlighted="true"] {
+    background-color: #2b2b2b !important;
+    background: #2b2b2b !important;
+    border-left: 3px solid #E50914 !important;
+}
